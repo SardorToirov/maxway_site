@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7un00_w@17r#*1!xggh&7xgd17rat6z4rx=dtl=fuvpyvbs-pq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','maxway-site.onrender.com','localhost']
 
 
 # Application definition
