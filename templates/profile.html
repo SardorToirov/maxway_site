@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-container">
+    {% include 'userbar.html' %}
+
+    <!-- MAIN CONTENT-->
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="overview-wrap">
+                            <h2 class="title-1">Username: {{ request.user.username }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <h2>Last actions:</h2>
+                        {% for act in request.session.actions %}
+                            <div class="row">{{ act }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="overview-item overview-item--c1">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon"><i class="fa fa-book"></i></div>
+                                    <div class="text">
+                                        <h2>{{ request.session.faculty_count }}</h2>
+                                        <span>Categories</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                    <div class="col-sm-6 col-lg-4">-->
+<!--                        <div class="overview-item overview-item&#45;&#45;c2">-->
+<!--                            <div class="overview__inner">-->
+<!--                                <div class="overview-box clearfix">-->
+<!--                                    <div class="icon"><i class="fa fa-bank"></i></div>-->
+<!--                                    <div class="text">-->
+<!--                                        <h2>{{ request.session.kafedra_count }}</h2>-->
+<!--                                        <span>Count</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="overview-item overview-item--c3">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon"><i class="zmdi zmdi-calendar-note"></i></div>
+                                    <div class="text">
+                                        <h2>{{ request.session.subject_count }}</h2>
+                                        <span>Orders</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="overview-item overview-item--c1">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon"><i class="zmdi zmdi-account-o"></i></div>
+                                    <div class="text">
+                                        <h2>{{ request.session.teacher_count }}</h2>
+                                        <span>Users</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="overview-item overview-item--c2">
+                            <div class="overview__inner">
+                                <div class="overview-box clearfix">
+                                    <div class="icon"><i class="zmdi zmdi-shopping-cart"></i></div>
+                                    <div class="text">
+                                        <h2>{{ request.session.group_count }}</h2>
+                                        <span>Products</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                    <div class="col-sm-6 col-lg-4">-->
+<!--                        <div class="overview-item overview-item&#45;&#45;c3">-->
+<!--                            <div class="overview__inner">-->
+<!--                                <div class="overview-box clearfix">-->
+<!--                                    <div class="icon"><i class="zmdi zmdi-calendar-note"></i></div>-->
+<!--                                    <div class="text">-->
+<!--                                        <h2>{{ request.session.student_count }}</h2>-->
+<!--                                        <span>Students</span>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
