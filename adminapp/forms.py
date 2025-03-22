@@ -1,10 +1,10 @@
 from django import forms
-from .models import *
+from home.models import *
 
 
 class FacultyForm(forms.ModelForm):
     class Meta:
-        model = Categories
+        model = Category
         fields = "__all__"
         widgets = {
             "name": forms.TextInput(attrs={'class': 'form-control'})
@@ -14,7 +14,7 @@ class FacultyForm(forms.ModelForm):
 
 class GuruhForm(forms.ModelForm):
     class Meta:
-        model = Products
+        model = Product
         fields = "__all__"
         widgets = {
             "faculty": forms.Select(attrs={'class': 'form-control'}),
@@ -24,7 +24,7 @@ class GuruhForm(forms.ModelForm):
 
 class SubjectForm(forms.ModelForm):
     class Meta:
-        model = Orders
+        model = Order
         fields = "__all__"
         widgets = {
             "name": forms.TextInput(attrs={'class': 'form-control'})
@@ -34,7 +34,7 @@ class SubjectForm(forms.ModelForm):
 
 class TeacherForm(forms.ModelForm):
     class Meta:
-        model = Users
+        model = User
         fields = "__all__"
         widgets = {
             "first_name": forms.TextInput(attrs={'class': 'form-control'}),
