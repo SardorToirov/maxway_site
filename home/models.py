@@ -13,8 +13,8 @@ class Product(models.Model):
     img = models.ImageField(upload_to='images')
     title = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField()
-    cost = models.SmallIntegerField()
-    price = models.SmallIntegerField()
+    cost = models.PositiveIntegerField()  # Ensuring only positive values
+    price = models.PositiveIntegerField()  # Ensuring only positive values
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -42,9 +42,9 @@ class Order(models.Model):
 
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_products")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="order_products")
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name="order_products")  # Prevent accidental deletion
     count = models.PositiveSmallIntegerField(default=1)
-    price = models.IntegerField()
+    price = models.PositiveIntegerField()  # Ensuring only positive values
 
     def __str__(self):
         return f"{self.order.customer.first_name} - {self.product.title} x {self.count}"

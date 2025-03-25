@@ -30,8 +30,18 @@
                                 <form method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <label class=" form-control-label">Name</label>
-                                        {{ form.name }}
+                                        <label class=" form-control-label">customer</label>
+                                        {{ form.customer }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class=" form-control-label">address</label>
+                                        {{ form.address }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class=" form-control-label">payment_type</label>
+                                        {{ form.payment_type }}
                                     </div>
 
                                     {% if model %}
