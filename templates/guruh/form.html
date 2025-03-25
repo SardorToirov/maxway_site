@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="overview-wrap">
-                            <h2 class="title-1">Add Guruh</h2>
+                            <h2 class="title-1">Add Products</h2>
                         </div>
                     </div>
                 </div>
@@ -31,8 +31,38 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label class=" form-control-label">Fast food Name</label>
-                                        {{ form.name }}
+                                        <br>
+
+                                        <div class="form-group">
+                                        <label class=" form-control-label">category</label>
+                                         {{ form.category}}
                                     </div>
+
+                                        <div class="form-group">
+                                        <label class=" form-control-label">title</label>
+                                         {{ form.title}}
+                                    </div>
+
+                                        <div class="form-group">
+                                        <label class=" form-control-label">description</label>
+                                         {{ form.description}}
+                                    </div>
+
+                                        <div class="form-group">
+                                        <label class=" form-control-label">cost</label>
+                                         {{ form.cost}}
+                                    </div>
+
+                                        <div class="form-group">
+                                        <label class=" form-control-label">price</label>
+                                        {{ form.price}}
+                                    </div>
+
+                                        <div class="form-group">
+                                        <label class=" form-control-label">img</label>
+                                         {{ form.img}}
+                                    </div>
+
 
                                     {% if model %}
                                     <button type="submit" class="btn btn-warning btn-md">Save</button>

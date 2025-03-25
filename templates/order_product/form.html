@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="overview-wrap">
-                            <h2 class="title-1">Add Students</h2>
+                            <h2 class="title-1">Add OrderProducts</h2>
                         </div>
                     </div>
                 </div>
@@ -30,16 +30,14 @@
                                 <form method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <label class=" form-control-label">First name</label>
-                                        {{ form.first_name }}
-                                        <label class=" form-control-label">Last name</label>
-                                        {{ form.last_name }}
-                                        <label class=" form-control-label">Age</label>
-                                        {{ form.age }}
-                                        <label class=" form-control-label">Group</label>
-                                        {{ form.guruh }}
-                                        <label class=" form-control-label">Img</label>
-                                        {{ form.img }}
+                                        <label class=" form-control-label">order</label>
+                                        {{ form.order }}
+                                        <label class=" form-control-label">product</label>
+                                        {{ form.product }}
+                                        <label class=" form-control-label">count</label>
+                                        {{ form.count }}
+                                        <label class=" form-control-label">price</label>
+                                        {{ form.price }}
                                     </div>
 
                                     {% if model %}

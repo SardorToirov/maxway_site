@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .models import *
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
@@ -7,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from .forms import *
-from . import services
+from home import services
 
 
 def login_required_decorator(func):
@@ -52,7 +51,7 @@ def home_page(request):
 
 @login_required_decorator
 def faculty_create(request):
-    model = Categories()
+    model = Category()
     form = FacultyForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -74,7 +73,7 @@ def faculty_create(request):
 
 @login_required_decorator
 def faculty_edit(request, pk):
-    model = Categories.objects.get(pk=pk)
+    model = Category.objects.get(pk=pk)
     form = FacultyForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -96,7 +95,7 @@ def faculty_edit(request, pk):
 
 @login_required_decorator
 def faculty_delete(request, pk):
-    model = Categories.objects.get(pk=pk)
+    model = Category.objects.get(pk=pk)
     model.delete()
     return redirect('faculty_list')
 
@@ -113,8 +112,8 @@ def faculty_list(request):
 
 
 @login_required_decorator
-def guruh_created(request):
-    model = Products()
+def guruh_create(request):
+    model = Product()
     form = GuruhForm(request.POST or None,instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -136,7 +135,7 @@ def guruh_created(request):
 
 @login_required_decorator
 def guruh_edit(request,pk):
-    model = Products.objects.get(pk=pk)
+    model = Product.objects.get(pk=pk)
     form = GuruhForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -151,7 +150,7 @@ def guruh_edit(request,pk):
 
 @login_required_decorator
 def guruh_delete(request,pk):
-    model = Products.objects.get(pk=pk)
+    model = Product.objects.get(pk=pk)
     model.delete()
     return redirect('guruh_list')
 
@@ -167,8 +166,8 @@ def guruh_list(request):
 
 
 @login_required_decorator
-def subject_created(request):
-    model = Orders()
+def subject_create(request):
+    model = Order()
     form = SubjectForm(request.POST or None,instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -190,7 +189,7 @@ def subject_created(request):
 
 @login_required_decorator
 def subject_edit(request,pk):
-    model = Orders.objects.get(pk=pk)
+    model = Order.objects.get(pk=pk)
     form = SubjectForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -205,7 +204,7 @@ def subject_edit(request,pk):
 
 @login_required_decorator
 def subject_delete(request,pk):
-    model = Orders.objects.get(pk=pk)
+    model = Order.objects.get(pk=pk)
     model.delete()
     return redirect('subject_list')
 
@@ -221,7 +220,7 @@ def subject_list(request):
 
 @login_required_decorator
 def teacher_create(request):
-    model = Users()
+    model = User()
     form = TeacherForm(request.POST or None,instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -242,7 +241,7 @@ def teacher_create(request):
 
 @login_required_decorator
 def teacher_edit(request,pk):
-    model = Users.objects.get(pk=pk)
+    model = User.objects.get(pk=pk)
     form = TeacherForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
@@ -256,7 +255,7 @@ def teacher_edit(request,pk):
     return render(request, 'teacher/form.html', stx)
 @login_required_decorator
 def teacher_delete(request,pk):
-    model = Users.objects.get(pk=pk)
+    model = User.objects.get(pk=pk)
     model.delete()
     return redirect('teacher_list')
 
@@ -268,26 +267,49 @@ def teacher_list(request):
     }
     return render(request,'teacher/list.html',stx)
 
-@login_required_decorator
-@login_required(login_url='login_page')
-def student_create(request):
-    model = Users()
-    form = StudentForm(request.POST or None, request.FILES or None, instance=model)
-    if request.method == "POST" and form.is_valid():
+
+@login_required
+def order_product_create(request):
+    form = OrderProductForm(request.POST or None)
+    if request.POST and form.is_valid():
         form.save()
+        return redirect('order_product_list')
 
-        actions = request.session.get('actions', [])
-        actions += [f"You created Student: {request.POST.get('first_name')}"]
-        request.session["actions"] = actions
-
-        student_count = request.session.get('student_count', 0)
-        student_count += 1
-        request.session["student_count"] = student_count
-        return redirect('student_list')
     ctx = {
         "form": form
     }
-    return render(request, 'student/form.html', ctx)
+    return render(request, 'order_product/form.html', ctx)
+
+
+@login_required
+def order_product_edit(request, pk):
+    model = OrderProduct.objects.get(pk=pk)
+    form = OrderProductForm(request.POST or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('order_product_list')
+
+    ctx = {
+        "form": form,
+        "model": model
+    }
+    return render(request, 'order_product/form.html', ctx)
+
+
+@login_required
+def order_product_delete(request, pk):
+    model = OrderProduct.objects.get(pk=pk)
+    model.delete()
+    return redirect('order_product_list')
+
+
+@login_required
+def order_product_list(request):
+    order_products = services.get_order_products()
+    ctx = {
+        "order_products": order_products
+    }
+    return render(request, 'order_product/list.html', ctx)
 
 
 

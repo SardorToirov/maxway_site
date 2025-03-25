@@ -29,7 +29,9 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>customer</th>
+                                        <th>address</th>
+                                        <th>payment_type</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -37,7 +39,9 @@
                                     {% for i in subjects %}
                                     <tr>
                                         <td>{{ i.id }}</td>
-                                        <td>{{ i.name }}</td>
+                                        <td>{{ i.customer }}</td>
+                                        <td>{{ i.address }}</td>
+                                        <td>{{ i.payment_type }}</td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <a class="item" data-toggle="tooltip" href="{% url 'subject_edit' pk=i.id %}" data-placement="top" title="" data-original-title="Edit">

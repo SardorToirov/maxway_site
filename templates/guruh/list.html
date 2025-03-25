@@ -29,7 +29,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        <th>category</th>
+                                        <th>title</th>
+                                        <th>description</th>
+                                        <th>cost</th>
+                                        <th>price</th>
+                                        <th>img</th>
 
                                         <th>Actions</th>
                                     </tr>
@@ -38,7 +43,13 @@
                                     {% for i in guruhs %}
                                     <tr>
                                         <td>{{ i.id }}</td>
-                                        <td>{{ i.name }}</td>
+                                        <td>{{ i.category }}</td>
+                                        <td>{{ i.title }}</td>
+                                        <td>{{ i.description }}</td>
+                                        <td>{{ i.cost }}</td>
+                                        <td>{{ i.price }}</td>
+                                        <td>{{ i.img }}</td>
+
 
                                         <td>
                                             <div class="table-data-feature">
